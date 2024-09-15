@@ -1,0 +1,108 @@
+body {
+    background-color: #d1d1d1;
+    max-width: 960px;
+    margin: 20px auto;
+}
+
+img {
+    width: 50px;
+    height: 50px;
+}
+
+p, h3, h4, ul {
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    padding: 0;
+}
+
+.song-list {
+    list-style: none;
+    padding: 0;
+}
+
+.song-item {
+    background-color: #fff;
+    margin: 10px 0;
+    padding: 10px 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.song-item:hover {
+    background-color: #f0f0f0;
+    transform: scale(1.05);
+}
+
+.song-item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+}
+
+.song-item h3,
+.song-item h4,
+.song-item p {
+    margin: 0;
+    padding: 0 10px;
+}
+
+.song-item h3 {
+    flex-grow: 1;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.song-item h4 {
+    flex-grow: 1;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.song-item .fa-heart,
+.song-item .fa-regular.fa-heart {
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    transition: color 0.3s ease;
+}
+
+.song-item .fa-heart {
+    color: #ff0000;
+}
+
+.song-item .fa-regular.fa-heart {
+    color: #ccc;
+}
+
+.searchbar {
+    background-color: #fee0ff;
+    padding: 15px;
+    margin: 15px auto;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.searchbar input {
+    border: none;
+    background: none;
+    outline: none;
+    border-bottom: 1px black solid;
+    width: 75%;
+    padding: 10px;
+    transition: border-color 0.3s ease;
+}
+
+.searchbar input:focus {
+    border-bottom: 2px black solid;
+}
