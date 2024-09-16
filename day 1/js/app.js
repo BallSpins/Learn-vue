@@ -13,8 +13,29 @@ Vue.createApp({
             search: '',
             filter: 'title',
             isFilterPanelVisible: false,
-            isFilterIconHovered: false,
-            songSearched: []
+            isFilterIconHovered: false
+        }
+    },
+    computed: {
+        filteredSongs() {
+            if (this.filter === 'isFav') {
+                if(this.search) {
+                    return this.songs.filter(song => 
+                        song.isFav && song.title.toLowerCase().includes(this.search.toLowerCase())
+                    )
+                } else {
+                    return this.songs.filter(song => song.isFav)
+                }
+            } else if(this.search) {
+                return this.songs.filter(song => 
+                    song[this.filter].toLowerCase().includes(this.search.toLowerCase())
+                )
+            } else {
+                return this.songs
+            }
+        },
+        searchPlaceholder() {
+            return `Search by ${this.filter === 'isFav' ? 'favorites' : this.filter}`
         }
     },
     methods: {
@@ -26,34 +47,8 @@ Vue.createApp({
             this.isFilterPanelVisible = false
             this.searchsong()
         },
-        searchPlaceholder() {
-           return this.filter === 'isFav' ? 'Search by favorites' : `Search by ${this.filter}`
-        },
-        searchsong() {
-            if (this.filter === 'isFav') {
-                if (this.search) {
-                    this.songSearched = this.songs.filter(song => 
-                        song.isFav && song.title.toLowerCase().includes(this.search.toLowerCase())
-                    );
-                } else {
-                    this.songSearched = this.songs.filter(song => song.isFav)
-                }
-            } else {
-                if (this.search) {
-                    this.songSearched = this.songs.filter(song => 
-                        song[this.filter].toLowerCase().includes(this.search.toLowerCase())
-                    );
-                } else {
-                    this.songSearched = [];
-                }
-            }
-        },
         toggleFavorite(song) {
             song.isFav = !song.isFav
-
-            if (this.filter === 'isFav') {
-                this.searchsong();
-            }
         }
     }
 }).mount('#app')

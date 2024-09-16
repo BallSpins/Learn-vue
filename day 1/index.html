@@ -11,7 +11,7 @@
 <body>
     <div id="app">
         <div class="searchbar">
-            <input type="text" v-model="search" @input="searchsong" :placeholder="searchPlaceholder()">
+            <input type="text" v-model="search" :placeholder="searchPlaceholder">
             <i :class="['fa-solid', 'fa-filter', { active: isFilterIconHovered }]" 
                 @click="toggleFilterPanel" 
                 @mouseenter="isFilterPanelVisible = true; isFilterIconHovered = true" 
@@ -25,12 +25,12 @@
             </div>
         </div>
 
-        <div v-if="(search && songSearched.length) || filter === 'isFav'">
-            <div v-if="!songSearched.length" class="no-songs">
+        <div v-if="filteredSongs || filter === 'isFav'">
+            <div v-if="!filteredSongs.length" class="no-songs">
                 <h4>No songs found</h4>
             </div>
             <ul v-else class="song-list">
-                <li v-for="song in songSearched" class="song-item">
+                <li v-for="song in filteredSongs" class="song-item">
                     <img :src="song.img" :alt="song.title">
                     <h3>
                         {{ song.title }}
