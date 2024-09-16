@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 3</title>
+    <title>Day 1</title>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
@@ -11,11 +11,25 @@
 <body>
     <div id="app">
         <div class="searchbar">
-            <input type="text" v-model="searchtitle" @input="searchsong" placeholder="Search title">
+            <input type="text" v-model="search" @input="searchsong" :placeholder="searchPlaceholder()">
+            <i :class="['fa-solid', 'fa-filter', { active: isFilterIconHovered }]" 
+                @click="toggleFilterPanel" 
+                @mouseenter="isFilterPanelVisible = true; isFilterIconHovered = true" 
+                @mouseleave="isFilterIconHovered = false"
+            ></i>
+            <div class="filter-panel" :class="{ active: isFilterPanelVisible }" @mouseleave="isFilterPanelVisible = false">
+                <button @click="setFilter('title')">Filter by Title</button>
+                <button @click="setFilter('album')">Filter by Album</button>
+                <button @click="setFilter('artist')">Filter by Artist</button>
+                <button @click="setFilter('isFav')">Filter by Favorites</button>
+            </div>
         </div>
 
-        <div v-if="searchtitle && songSearched.length">
-            <ul class="song-list">
+        <div v-if="(search && songSearched.length) || filter === 'isFav'">
+            <div v-if="!songSearched.length" class="no-songs">
+                <h4>No songs found</h4>
+            </div>
+            <ul v-else class="song-list">
                 <li v-for="song in songSearched" class="song-item">
                     <img :src="song.img" :alt="song.title">
                     <h3>

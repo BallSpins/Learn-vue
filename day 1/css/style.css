@@ -91,6 +91,34 @@ ul {
     border-radius: 10px;
     display: flex;
     justify-content: center;
+    gap: 2rem;
+    position: relative;
+}
+
+.fa-filter {
+    color: #000;
+    cursor: pointer;
+    font-size: 20px;
+    margin: 8px;
+    transition: background-color 0.3s ease-in-out, padding 0.3s ease, border-radius 0.3s ease, color 0.3s ease;
+}
+.fa-filter.active {
+    background-color: #0d6efd;
+    padding: 0.2rem;
+    border-radius: 0.2rem;
+    color: white;
+}
+
+.no-songs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.no-songs h4 {
+    font-size: 1.5rem;
+    color: #999;
 }
 
 .searchbar input {
@@ -105,4 +133,39 @@ ul {
 
 .searchbar input:focus {
     border-bottom: 2px black solid;
+}
+
+.filter-panel {
+    opacity: 0;
+    position: absolute;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    right: -2.5rem;
+    z-index: 10;
+    transform: translateY(-20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.filter-panel.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.filter-panel button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background: #f0f0f0;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    text-align: left;
+    transition: background-color 0.3s ease;
+}
+
+.filter-panel button:hover {
+    background: #e0e0e0;
 }
