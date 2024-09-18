@@ -2,14 +2,16 @@
   <h1>PokeDex</h1>
   <div class="list">
     <PokemonList />
+    <ButtonBubble :onpress="wow" bgColor="red" sprite="https://iconape.com/wp-content/files/wd/155872/png/snorlax-logo.png"/>
   </div>
 </template>
 
 <script>
   import PokemonList from './components/PokemonList.vue';
+  import ButtonBubble from './components/ButtonBubble.vue';
   export default {
     name: 'App',
-    components: { PokemonList },
+    components: { PokemonList, ButtonBubble },
     data() {
       return {
         data: []
@@ -19,6 +21,9 @@
       
     },
     methods: {
+      wow() {
+        console.log('wow')
+      }
     }
   }
 </script>
@@ -39,5 +44,8 @@
     text-align: center;
     color: #2c3e50;
     margin-top: 60px;
+  }
+  img {
+    user-select: none;
   }
 </style>
